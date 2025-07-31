@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layag Staycation - Your Elyu Beach Getaway</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F7F4; /* Sandy beige background */
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #3B82F6; /* Ocean blue */
+            transition: width 0.3s;
+        }
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .hero-bg {
+            background-image: url('https://placehold.co/1600x900/a0c4ff/ffffff?text=Layag+Staycation+House');
+            background-size: cover;
+            background-position: center;
+        }
+        .gallery-img {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .modal {
+            transition: opacity 0.3s ease;
+        }
+        .modal-content {
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#home" class="nav-trigger text-2xl font-display font-bold text-blue-600">Layag</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link nav-trigger active">Home</a>
+                    <a href="#rooms" class="nav-link nav-trigger">Rooms</a>
+                    <a href="#gallery" class="nav-link nav-trigger">Gallery</a>
+                    <a href="#location" class="nav-link nav-trigger">Location</a>
+                    <a href="#about" class="nav-link nav-trigger">About Us</a>
+                    <a href="#contact" class="nav-link nav-trigger">Contact</a>
+                </nav>
+                <div class="flex items-center">
+                     <a href="#booking" class="nav-trigger bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 shadow-md hidden md:inline-block">Book Now</a>
+                     <button id="mobile-menu-button" class="md:hidden ml-4">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg">
+            <a href="#home" class="block py-2 px-6 text-sm nav-trigger">Home</a>
+            <a href="#rooms" class="block py-2 px-6 text-sm nav-trigger">Rooms</a>
+            <a href="#gallery" class="block py-2 px-6 text-sm nav-trigger">Gallery</a>
+            <a href="#location" class="block py-2 px-6 text-sm nav-trigger">Location</a>
+            <a href="#about" class="block py-2 px-6 text-sm nav-trigger">About Us</a>
+            <a href="#contact" class="block py-2 px-6 text-sm nav-trigger">Contact</a>
+            <a href="#booking" class="block py-3 px-6 text-sm bg-blue-500 text-white text-center font-bold nav-trigger">Book Now</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Page Sections -->
+        <div id="page-content">
+            <!-- Content will be loaded here by JavaScript -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-display text-2xl font-bold mb-4">Layag</h3>
+                    <p class="text-gray-400">Your serene escape by the shores of Elyu Beach. Experience comfort, style, and the calming waves.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="hover:text-blue-400 transition nav-trigger">Home</a></li>
+                        <li><a href="#rooms" class="hover:text-blue-400 transition nav-trigger">Our Rooms</a></li>
+                        <li><a href="#booking" class="hover:text-blue-400 transition nav-trigger">Book a Stay</a></li>
+                        <li><a href="#contact" class="hover:text-blue-400 transition nav-trigger">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-start"><i data-lucide="map-pin" class="w-5 h-5 mr-2 mt-1 text-blue-400"></i>123 Beachfront Rd, San Juan, La Union</li>
+                        <li class="flex items-center"><i data-lucide="phone" class="w-5 h-5 mr-2 text-blue-400"></i>+63 917 123 4567</li>
+                        <li class="flex items-center"><i data-lucide="mail" class="w-5 h-5 mr-2 text-blue-400"></i>hello@layagstaycation.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i data-lucide="twitter" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-6 text-center text-gray-500 text-sm">
+                <p>&copy; <span id="current-year"></span> Layag Staycation. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Image Modal -->
+    <div id="image-modal" class="modal fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-lg max-w-4xl max-h-full overflow-hidden transform scale-95">
+            <img id="modal-img" src="" alt="Enlarged gallery image" class="w-full h-auto object-contain max-h-[85vh]">
+            <p id="modal-caption" class="text-center p-4 bg-white"></p>
+        </div>
+        <button id="modal-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+    </div>
+
+    <!-- Booking Confirmation Modal -->
+    <div id="confirmation-modal" class="modal fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none">
+        <div class="modal-content bg-white rounded-lg p-8 max-w-md w-full text-center transform scale-95 shadow-2xl">
+            <div class="mx-auto bg-green-100 rounded-full h-20 w-20 flex items-center justify-center">
+                <i data-lucide="check-circle-2" class="text-green-500 w-12 h-12"></i>
+            </div>
+            <h2 class="text-2xl font-bold mt-6 mb-2">Booking Confirmed!</h2>
+            <p class="text-gray-600 mb-6">Thank you, <span id="conf-name" class="font-semibold"></span>! Your reservation is complete. A confirmation email has been sent to <span id="conf-email" class="font-semibold"></span>.</p>
+            <div class="bg-gray-50 rounded-lg p-4 text-left mb-6 space-y-2">
+                <p><strong>Room:</strong> <span id="conf-room"></span></p>
+                <p><strong>Check-in:</strong> <span id="conf-checkin"></span></p>
+                <p><strong>Check-out:</strong> <span id="conf-checkout"></span></p>
+                <p><strong>Total Price:</strong> <span id="conf-price" class="font-bold"></span></p>
+            </div>
+            <button id="confirmation-close" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-full transition duration-300 w-full">Close</button>
+        </div>
+    </div>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // --- Page Templates ---
+        const pages = {
+            home: `
+                <!-- Hero Section -->
+                <div class="hero-bg text-white min-h-[60vh] md:min-h-[85vh] flex items-center">
+                    <div class="container mx-auto px-6 text-center bg-black/40 py-12 md:py-20 rounded-xl">
+                        <h1 class="text-4xl md:text-7xl font-display font-bold mb-4">Your Wave of Calm in Elyu</h1>
+                        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">Discover Layag, a sanctuary of peace and comfort just steps away from the vibrant shores of La Union.</p>
+                        <a href="#booking" class="nav-trigger bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full text-lg transition duration-300 shadow-lg">Book Your Stay</a>
+                    </div>
+                </div>
+
+                <!-- Featured Rooms -->
+                <section class="py-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-3xl md:text-4xl font-display text-center font-bold mb-4">Our Accommodations</h2>
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Each space at Layag is designed for your ultimate comfort and relaxation.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Room 1 -->
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="https://placehold.co/600x400/8ab4f8/ffffff?text=Villa+1" alt="Villa 1 | Couple Room" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-display font-bold mb-2">Villa 1 | Couple Room</h3>
+                                    <p class="text-gray-600 mb-4">A spacious suite with a private balcony overlooking the garden. Perfect for couples.</p>
+                                    <a href="#rooms" class="nav-trigger font-bold text-blue-500 hover:text-blue-600">View Details <i data-lucide="arrow-right" class="inline w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <!-- Room 2 -->
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="https://placehold.co/600x400/9ec5fe/ffffff?text=Villa+2" alt="Villa 2 | 4 - Pax Room" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-display font-bold mb-2">Villa 2 | 4 - Pax Room</h3>
+                                    <p class="text-gray-600 mb-4">A cozy loft-style room with a modern, rustic charm. Ideal for small families or friends.</p>
+                                    <a href="#rooms" class="nav-trigger font-bold text-blue-500 hover:text-blue-600">View Details <i data-lucide="arrow-right" class="inline w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                            <!-- Room 3 -->
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="https://placehold.co/600x400/b3d4ff/ffffff?text=Villa+3" alt="Villa 3 | Couple Room" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-display font-bold mb-2">Villa 3 | Couple Room</h3>
+                                    <p class="text-gray-600 mb-4">Enjoy direct access to our serene pool from this beautifully appointed cabana.</p>
+                                    <a href="#rooms" class="nav-trigger font-bold text-blue-500 hover:text-blue-600">View Details <i data-lucide="arrow-right" class="inline w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                             <!-- Room 4 -->
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="https://placehold.co/600x400/7ec699/ffffff?text=Villa+4" alt="Villa 4 | Family Room" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-display font-bold mb-2">Villa 4 | Family Room</h3>
+                                    <p class="text-gray-600 mb-4">The perfect choice for larger families or groups, with multiple beds and a living area.</p>
+                                    <a href="#rooms" class="nav-trigger font-bold text-blue-500 hover:text-blue-600">View Details <i data-lucide="arrow-right" class="inline w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                             <!-- Room 5 -->
+                            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                                <img src="https://placehold.co/600x400/a7d8de/ffffff?text=Villa+5" alt="Villa 5 | Hostel Room" class="w-full h-64 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-2xl font-display font-bold mb-2">Villa 5 | Hostel Room</h3>
+                                    <p class="text-gray-600 mb-4">A budget-friendly option for solo travelers. Book a bed in our modern shared room.</p>
+                                    <a href="#rooms" class="nav-trigger font-bold text-blue-500 hover:text-blue-600">View Details <i data-lucide="arrow-right" class="inline w-4 h-4"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Testimonials -->
+                <section class="py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-3xl md:text-4xl font-display text-center font-bold mb-12">What Our Guests Say</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <p class="text-gray-600 mb-4">"An absolute paradise! The location is perfect, just a short walk to the beach. The house itself is stunning and so clean. We'll definitely be back!"</p>
+                                <p class="font-bold">- Maria S.</p>
+                            </div>
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <p class="text-gray-600 mb-4">"Layag was the perfect escape from the city. Waking up to the calm ambiance was rejuvenating. The staff were incredibly friendly and helpful."</p>
+                                <p class="font-bold">- John D.</p>
+                            </div>
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <p class="text-gray-600 mb-4">"We booked the entire house for a family reunion and it exceeded our expectations. Spacious, well-equipped, and the pool was a huge hit with the kids!"</p>
+                                <p class="font-bold">- The Reyes Family</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `,
+            rooms: `
+                <div class="bg-white py-20">
+                    <div class="container mx-auto px-6">
+                        <h1 class="text-4xl md:text-5xl font-display text-center font-bold mb-4">Our Rooms</h1>
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-16">Find the perfect space for your staycation. Each room is thoughtfully designed to be your home away from home.</p>
+                        
+                        <!-- Room 1: Villa 1 -->
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                            <div class="md:w-1/2">
+                                <img src="https://placehold.co/800x600/8ab4f8/ffffff?text=Villa+1" alt="Villa 1 | Couple Room" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                                <h2 class="text-3xl font-display font-bold mb-3">Villa 1 | Couple Room</h2>
+                                <p class="text-2xl font-bold text-blue-500 mb-4">₱5,000 / night</p>
+                                <p class="text-gray-600 mb-6">Our premier suite offers a king-sized bed, a private balcony with garden views, and an en-suite bathroom with a rainfall shower. It's the perfect romantic retreat for two.</p>
+                                <div class="grid grid-cols-2 gap-4 mb-6 text-gray-700">
+                                    <span class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2 text-blue-500"></i>Sleeps 2</span>
+                                    <span class="flex items-center"><i data-lucide="bed-double" class="w-5 h-5 mr-2 text-blue-500"></i>1 King Bed</span>
+                                    <span class="flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>High-speed WiFi</span>
+                                    <span class="flex items-center"><i data-lucide="wind" class="w-5 h-5 mr-2 text-blue-500"></i>Air Conditioned</span>
+                                    <span class="flex items-center"><i data-lucide="tv" class="w-5 h-5 mr-2 text-blue-500"></i>Smart TV</span>
+                                    <span class="flex items-center"><i data-lucide="sunrise" class="w-5 h-5 mr-2 text-blue-500"></i>Private Balcony</span>
+                                </div>
+                                <a href="#booking" data-room="Villa 1 | Couple Room" data-price="5000" class="book-room-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 self-start">Book This Room</a>
+                            </div>
+                        </div>
+
+                        <!-- Room 2: Villa 2 -->
+                        <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                            <div class="md:w-1/2">
+                                <img src="https://placehold.co/800x600/9ec5fe/ffffff?text=Villa+2" alt="Villa 2 | 4 - Pax Room" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                                <h2 class="text-3xl font-display font-bold mb-3">Villa 2 | 4 - Pax Room</h2>
+                                <p class="text-2xl font-bold text-blue-500 mb-4">₱6,500 / night</p>
+                                <p class="text-gray-600 mb-6">This stylish two-level loft is perfect for small groups or families. It features two queen beds, a cozy living area, and large windows that let in plenty of natural light.</p>
+                                <div class="grid grid-cols-2 gap-4 mb-6 text-gray-700">
+                                    <span class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2 text-blue-500"></i>Sleeps 4</span>
+                                    <span class="flex items-center"><i data-lucide="bed-double" class="w-5 h-5 mr-2 text-blue-500"></i>2 Queen Beds</span>
+                                    <span class="flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>High-speed WiFi</span>
+                                    <span class="flex items-center"><i data-lucide="wind" class="w-5 h-5 mr-2 text-blue-500"></i>Air Conditioned</span>
+                                    <span class="flex items-center"><i data-lucide="tv" class="w-5 h-5 mr-2 text-blue-500"></i>Smart TV</span>
+                                    <span class="flex items-center"><i data-lucide="sofa" class="w-5 h-5 mr-2 text-blue-500"></i>Living Area</span>
+                                </div>
+                                <a href="#booking" data-room="Villa 2 | 4 - Pax Room" data-price="6500" class="book-room-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 self-start">Book This Room</a>
+                            </div>
+                        </div>
+
+                        <!-- Room 3: Villa 3 -->
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                            <div class="md:w-1/2">
+                                <img src="https://placehold.co/800x600/b3d4ff/ffffff?text=Villa+3" alt="Villa 3 | Couple Room" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                                <h2 class="text-3xl font-display font-bold mb-3">Villa 3 | Couple Room</h2>
+                                <p class="text-2xl font-bold text-blue-500 mb-4">₱4,500 / night</p>
+                                <p class="text-gray-600 mb-6">Step out of your room and right into our refreshing pool. This ground-floor cabana features a comfortable queen bed and is perfect for those who love to swim.</p>
+                                <div class="grid grid-cols-2 gap-4 mb-6 text-gray-700">
+                                    <span class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2 text-blue-500"></i>Sleeps 2</span>
+                                    <span class="flex items-center"><i data-lucide="bed-single" class="w-5 h-5 mr-2 text-blue-500"></i>1 Queen Bed</span>
+                                    <span class="flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>High-speed WiFi</span>
+                                    <span class="flex items-center"><i data-lucide="wind" class="w-5 h-5 mr-2 text-blue-500"></i>Air Conditioned</span>
+                                    <span class="flex items-center"><i data-lucide="tv" class="w-5 h-5 mr-2 text-blue-500"></i>Smart TV</span>
+                                    <span class="flex items-center"><i data-lucide="waves" class="w-5 h-5 mr-2 text-blue-500"></i>Pool Access</span>
+                                </div>
+                                <a href="#booking" data-room="Villa 3 | Couple Room" data-price="4500" class="book-room-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 self-start">Book This Room</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Room 4: Villa 4 -->
+                        <div class="flex flex-col md:flex-row-reverse bg-white rounded-xl shadow-lg overflow-hidden mb-12">
+                            <div class="md:w-1/2">
+                                <img src="https://placehold.co/800x600/7ec699/ffffff?text=Villa+4+Family+Room" alt="Villa 4 | Family Room" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                                <h2 class="text-3xl font-display font-bold mb-3">Villa 4 | Family Room</h2>
+                                <p class="text-2xl font-bold text-blue-500 mb-4">₱8,000 / night</p>
+                                <p class="text-gray-600 mb-6">The perfect choice for larger families or groups, featuring two separate bedrooms, a spacious living area, and a kitchenette for light meals.</p>
+                                <div class="grid grid-cols-2 gap-4 mb-6 text-gray-700">
+                                    <span class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2 text-blue-500"></i>Sleeps 6</span>
+                                    <span class="flex items-center"><i data-lucide="bed-double" class="w-5 h-5 mr-2 text-blue-500"></i>1 King, 2 Queen</span>
+                                    <span class="flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>High-speed WiFi</span>
+                                    <span class="flex items-center"><i data-lucide="wind" class="w-5 h-5 mr-2 text-blue-500"></i>Air Conditioned</span>
+                                    <span class="flex items-center"><i data-lucide="tv" class="w-5 h-5 mr-2 text-blue-500"></i>Smart TV</span>
+                                    <span class="flex items-center"><i data-lucide="soup" class="w-5 h-5 mr-2 text-blue-500"></i>Kitchenette</span>
+                                </div>
+                                <a href="#booking" data-room="Villa 4 | Family Room" data-price="8000" class="book-room-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 self-start">Book This Room</a>
+                            </div>
+                        </div>
+
+                        <!-- Room 5: Villa 5 -->
+                        <div class="flex flex-col md:flex-row bg-white rounded-xl shadow-lg overflow-hidden">
+                            <div class="md:w-1/2">
+                                <img src="https://placehold.co/800x600/a7d8de/ffffff?text=Villa+5+Hostel+Room" alt="Villa 5 | Hostel Room" class="w-full h-full object-cover">
+                            </div>
+                            <div class="md:w-1/2 p-8 flex flex-col justify-center">
+                                <h2 class="text-3xl font-display font-bold mb-3">Villa 5 | Hostel Room</h2>
+                                <p class="text-2xl font-bold text-blue-500 mb-4">₱1,500 / bed / night</p>
+                                <p class="text-gray-600 mb-6">A budget-friendly option for solo travelers or backpackers. Book a bed in our clean and modern shared hostel-style room with personal lockers.</p>
+                                <div class="grid grid-cols-2 gap-4 mb-6 text-gray-700">
+                                    <span class="flex items-center"><i data-lucide="users" class="w-5 h-5 mr-2 text-blue-500"></i>Sleeps 8</span>
+                                    <span class="flex items-center"><i data-lucide="bed-single" class="w-5 h-5 mr-2 text-blue-500"></i>Bunk Beds</span>
+                                    <span class="flex items-center"><i data-lucide="wifi" class="w-5 h-5 mr-2 text-blue-500"></i>High-speed WiFi</span>
+                                    <span class="flex items-center"><i data-lucide="wind" class="w-5 h-5 mr-2 text-blue-500"></i>Air Conditioned</span>
+                                    <span class="flex items-center"><i data-lucide="lock" class="w-5 h-5 mr-2 text-blue-500"></i>Personal Lockers</span>
+                                    <span class="flex items-center"><i data-lucide="shower-head" class="w-5 h-5 mr-2 text-blue-500"></i>Shared Bathroom</span>
+                                </div>
+                                <a href="#booking" data-room="Villa 5 | Hostel Room" data-price="1500" class="book-room-btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 self-start">Book This Bed</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `,
+            gallery: `
+                <div class="py-20">
+                    <div class="container mx-auto px-6">
+                        <h1 class="text-4xl md:text-5xl font-display text-center font-bold mb-4">Gallery</h1>
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Explore Layag and its beautiful surroundings. Click on any image to enlarge.</p>
+                        
+                        <!-- Gallery Grid -->
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <div class="col-span-2 row-span-2 rounded-lg overflow-hidden">
+                                <img src="https://placehold.co/800x600/a0c4ff/ffffff?text=Layag+Exterior" alt="Layag Exterior" class="gallery-img w-full h-full object-cover cursor-pointer">
+                            </div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/3b82f6/ffffff?text=Pool+Area" alt="Pool Area" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/60a5fa/ffffff?text=Living+Room" alt="Living Room" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/93c5fd/ffffff?text=Kitchen" alt="Kitchen" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/bfdbfe/ffffff?text=Dining+Area" alt="Dining Area" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/8ab4f8/ffffff?text=Villa+1+View" alt="Villa 1 View" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/9ec5fe/ffffff?text=Villa+2+Interior" alt="Villa 2 Interior" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                            <div class="col-span-2 rounded-lg overflow-hidden">
+                                <img src="https://placehold.co/800x400/3b82f6/ffffff?text=Elyu+Beach+Sunset" alt="Elyu Beach Sunset" class="gallery-img w-full h-full object-cover cursor-pointer">
+                            </div>
+                            <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/60a5fa/ffffff?text=Nearby+Cafe" alt="Nearby Cafe" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                             <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/b3d4ff/ffffff?text=Villa+3+Patio" alt="Villa 3 Patio" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                             <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/93c5fd/ffffff?text=Surfing+in+Elyu" alt="Surfing in Elyu" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                             <div class="rounded-lg overflow-hidden"><img src="https://placehold.co/600x400/bfdbfe/ffffff?text=Garden+Path" alt="Garden Path" class="gallery-img w-full h-full object-cover cursor-pointer"></div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            location: `
+                <div class="py-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <h1 class="text-4xl md:text-5xl font-display text-center font-bold mb-4">Our Location</h1>
+                        <p class="text-center text-gray-600 max-w-3xl mx-auto mb-12">We're perfectly situated in the heart of San Juan, La Union, offering the ideal balance of tranquility and accessibility to Elyu's best spots.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                            <div class="md:col-span-2 rounded-xl shadow-lg overflow-hidden">
+                                <!-- Embedded Google Map -->
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30636.56811488198!2d120.31075759918211!3d16.66698687784033!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391e9389a5b6973%3A0x63198defa5543881!2sSan%20Juan%2C%20La%20Union!5e0!3m2!1sen!2sph!4v1678886543210!5m2!1sen!2sph" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <div class="bg-blue-50 p-8 rounded-xl">
+                                <h3 class="text-2xl font-bold font-display mb-4">Getting Here</h3>
+                                <p class="mb-4"><strong>Address:</strong><br>123 Beachfront Rd, San Juan, La Union, Philippines</p>
+                                <h4 class="font-bold mb-2">Nearby Landmarks:</h4>
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li><strong>Elyu Beach:</strong> 2-minute walk</li>
+                                    <li><strong>Main Surfing Area:</strong> 5-minute walk</li>
+                                    <li><strong>Popular Cafes & Restaurants:</strong> 5-10 minute walk</li>
+                                    <li><strong>San Juan Town Proper:</strong> 5-minute drive</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            about: `
+                <div class="py-20">
+                    <div class="container mx-auto px-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">The Story of Layag</h1>
+                                <div class="space-y-4 text-gray-600 leading-relaxed">
+                                    <p>"Layag," the Filipino word for "sail," represents a journey. For us, it was a journey from the bustling city life to the calming shores of La Union. We dreamt of creating a space where others could also navigate their way to peace and relaxation.</p>
+                                    <p>Built with a love for both modern design and local craftsmanship, Layag is more than just a place to stay. It's a home we've built to share. Every corner is designed with comfort in mind, from the airy common spaces that invite connection to the private rooms that promise restful sleep.</p>
+                                    <p>We believe in the magic of Elyu—the vibrant sunsets, the thrilling surf, and the warm community. Our mission is to provide you with the perfect home base to experience it all. Welcome aboard, and let your journey to tranquility begin.</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                               <img src="https://placehold.co/400x500/a0c4ff/ffffff?text=Our+Family" alt="The owners of Layag" class="rounded-lg shadow-xl transform rotate-3">
+                               <img src="https://placehold.co/400x500/9ec5fe/ffffff?text=Building+Layag" alt="Construction of Layag" class="rounded-lg shadow-xl transform -rotate-3 mt-8">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            contact: `
+                <div class="py-20 bg-white">
+                    <div class="container mx-auto px-6">
+                        <h1 class="text-4xl md:text-5xl font-display text-center font-bold mb-4">Get In Touch</h1>
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Have questions or special requests? We'd love to hear from you.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                            <!-- Contact Form -->
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h2 class="text-2xl font-bold font-display mb-6">Send us a Message</h2>
+                                <form action="#" method="POST">
+                                    <div class="mb-4">
+                                        <label for="name" class="block text-gray-700 font-bold mb-2">Full Name</label>
+                                        <input type="text" id="name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="email" class="block text-gray-700 font-bold mb-2">Email Address</label>
+                                        <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                    </div>
+                                    <div class="mb-6">
+                                        <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+                                        <textarea id="message" name="message" rows="5" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300">Submit Inquiry</button>
+                                </form>
+                            </div>
+                            <!-- Contact Info -->
+                            <div class="space-y-8">
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="map-pin" class="w-6 h-6 text-blue-600"></i></div>
+                                    <div class="ml-4">
+                                        <h3 class="text-xl font-bold">Our Address</h3>
+                                        <p class="text-gray-600">123 Beachfront Rd, San Juan, La Union</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="phone" class="w-6 h-6 text-blue-600"></i></div>
+                                    <div class="ml-4">
+                                        <h3 class="text-xl font-bold">Phone & Email</h3>
+                                        <p class="text-gray-600">+63 917 123 4567</p>
+                                        <p class="text-gray-600">hello@layagstaycation.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-blue-100 p-4 rounded-full"><i data-lucide="share-2" class="w-6 h-6 text-blue-600"></i></div>
+                                    <div class="ml-4">
+                                        <h3 class="text-xl font-bold">Social Media</h3>
+                                        <div class="flex space-x-4 mt-2">
+                                            <a href="#" class="text-gray-500 hover:text-blue-600 transition"><i data-lucide="facebook" class="w-7 h-7"></i></a>
+                                            <a href="#" class="text-gray-500 hover:text-blue-600 transition"><i data-lucide="instagram" class="w-7 h-7"></i></a>
+                                            <a href="#" class="text-gray-500 hover:text-blue-600 transition"><i data-lucide="twitter" class="w-7 h-7"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            booking: `
+                <div class="py-20">
+                    <div class="container mx-auto px-6">
+                        <h1 class="text-4xl md:text-5xl font-display text-center font-bold mb-4">Book Your Stay</h1>
+                        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">Check availability and secure your spot at Layag. Your beach getaway is just a few clicks away!</p>
+                        
+                        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                            <!-- Booking Form -->
+                            <form id="booking-form">
+                                <h2 class="text-2xl font-bold font-display mb-6">Reservation Details</h2>
+                                
+                                <div class="mb-4">
+                                    <label for="booking-room" class="block text-gray-700 font-bold mb-2">Select Room</label>
+                                    <select id="booking-room" name="room" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                        <option value="" data-price="0">Choose a room...</option>
+                                        <option value="Villa 1 | Couple Room" data-price="5000">Villa 1 | Couple Room</option>
+                                        <option value="Villa 2 | 4 - Pax Room" data-price="6500">Villa 2 | 4 - Pax Room</option>
+                                        <option value="Villa 3 | Couple Room" data-price="4500">Villa 3 | Couple Room</option>
+                                        <option value="Villa 4 | Family Room" data-price="8000">Villa 4 | Family Room</option>
+                                        <option value="Villa 5 | Hostel Room" data-price="1500">Villa 5 | Hostel Room (per bed)</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label for="booking-dates" class="block text-gray-700 font-bold mb-2">Check-in & Check-out Dates</label>
+                                    <input type="text" id="booking-dates" placeholder="Select your dates" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+
+                                <h3 class="text-xl font-bold font-display mt-8 mb-4">Guest Information</h3>
+                                <div class="mb-4">
+                                    <label for="booking-name" class="block text-gray-700 font-bold mb-2">Full Name</label>
+                                    <input type="text" id="booking-name" name="name" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="booking-email" class="block text-gray-700 font-bold mb-2">Email Address</label>
+                                    <input type="email" id="booking-email" name="email" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                                </div>
+                                 <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 text-lg">Complete Reservation</button>
+                            </form>
+                            
+                            <!-- Price Summary -->
+                            <div class="bg-blue-50 rounded-lg p-8 flex flex-col">
+                                <h2 class="text-2xl font-bold font-display mb-6">Your Stay Summary</h2>
+                                <div id="price-summary" class="space-y-4 text-gray-700 flex-grow">
+                                    <p>Please select a room and dates to see the price summary.</p>
+                                </div>
+                                <div class="mt-8 pt-6 border-t-2 border-dashed border-blue-200">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xl font-bold">Total:</span>
+                                        <span id="total-price" class="text-3xl font-bold text-blue-600">₱0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        // --- SPA Router and Logic ---
+        const pageContent = document.getElementById('page-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navTriggers = document.querySelectorAll('.nav-trigger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+        function navigate(hash) {
+            const page = hash.substring(1) || 'home';
+            if (pages[page]) {
+                pageContent.innerHTML = pages[page];
+                window.scrollTo(0, 0);
+                updateActiveLink(page);
+                initializePageScripts(page);
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        function updateActiveLink(currentPage) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${currentPage}`) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        navTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                const hash = new URL(trigger.href).hash;
+                history.pushState(null, '', hash);
+                navigate(hash);
+            });
+        });
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        window.addEventListener('popstate', () => {
+            navigate(location.hash);
+        });
+
+        // Initial load
+        navigate(location.hash || '#home');
+
+
+        // --- Page-specific Scripts ---
+        function initializePageScripts(page) {
+            lucide.createIcons(); // Always re-run for newly added content
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+
+            if (page === 'gallery') {
+                setupGalleryModal();
+            }
+            if (page === 'rooms') {
+                setupRoomBookingButtons();
+            }
+            if (page === 'booking') {
+                setupBookingForm();
+            }
+        }
+
+        // --- Gallery Modal Logic ---
+        function setupGalleryModal() {
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const modalCaption = document.getElementById('modal-caption');
+            const closeModal = document.getElementById('modal-close');
+            const galleryImages = document.querySelectorAll('.gallery-img');
+
+            galleryImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                    modal.querySelector('.modal-content').classList.remove('scale-95');
+                    modalImg.src = img.src;
+                    modalCaption.textContent = img.alt;
+                });
+            });
+
+            const closeTheModal = () => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+            };
+
+            closeModal.addEventListener('click', closeTheModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeTheModal();
+                }
+            });
+        }
+        
+        // --- Rooms Page Logic ---
+        function setupRoomBookingButtons() {
+            document.querySelectorAll('.book-room-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const room = e.currentTarget.dataset.room;
+                    const price = e.currentTarget.dataset.price;
+                    
+                    // Store details to be used on booking page
+                    sessionStorage.setItem('preselectedRoom', room);
+                    sessionStorage.setItem('preselectedPrice', price);
+
+                    // Navigate to booking page
+                    const hash = '#booking';
+                    history.pushState(null, '', hash);
+                    navigate(hash);
+                });
+            });
+        }
+
+        // --- Booking Form Logic ---
+        function setupBookingForm() {
+            const roomSelect = document.getElementById('booking-room');
+            const datePickerEl = document.getElementById('booking-dates');
+            const priceSummaryEl = document.getElementById('price-summary');
+            const totalPriceEl = document.getElementById('total-price');
+            const bookingForm = document.getElementById('booking-form');
+
+            // Pre-select room if coming from rooms page
+            const preselectedRoom = sessionStorage.getItem('preselectedRoom');
+            if (preselectedRoom) {
+                roomSelect.value = preselectedRoom;
+                sessionStorage.removeItem('preselectedRoom');
+                sessionStorage.removeItem('preselectedPrice');
+            }
+
+            const datePicker = flatpickr(datePickerEl, {
+                mode: "range",
+                minDate: "today",
+                dateFormat: "F j, Y",
+                onChange: function(selectedDates, dateStr, instance) {
+                    updatePrice();
+                }
+            });
+
+            roomSelect.addEventListener('change', updatePrice);
+
+            function updatePrice() {
+                const selectedOption = roomSelect.options[roomSelect.selectedIndex];
+                const pricePerNight = parseFloat(selectedOption.dataset.price) || 0;
+                const dates = datePicker.selectedDates;
+                let nights = 0;
+                
+                if (dates.length === 2) {
+                    const diffTime = Math.abs(dates[1] - dates[0]);
+                    nights = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                }
+
+                if (pricePerNight > 0 && nights > 0) {
+                     const total = pricePerNight * nights;
+                     priceSummaryEl.innerHTML = `
+                        <div class="flex justify-between"><span>Room:</span> <span class="font-semibold">${selectedOption.value}</span></div>
+                        <div class="flex justify-between"><span>Price per night:</span> <span class="font-semibold">₱${pricePerNight.toLocaleString()}</span></div>
+                        <div class="flex justify-between"><span>Number of nights:</span> <span class="font-semibold">${nights}</span></div>
+                     `;
+                     totalPriceEl.textContent = `₱${total.toLocaleString()}`;
+                } else {
+                    priceSummaryEl.innerHTML = `<p>Please select a room and dates to see the price summary.</p>`;
+                    totalPriceEl.textContent = '₱0';
+                }
+            }
+            
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(bookingForm);
+                const name = formData.get('name');
+                const email = formData.get('email');
+                const room = formData.get('room');
+                const dates = datePickerEl.value.split(' to ');
+
+                if(!room || dates.length < 2) {
+                    // Replaced alert with a more user-friendly modal or inline message
+                    const errorEl = document.createElement('p');
+                    errorEl.textContent = 'Please select a room and your check-in/check-out dates.';
+                    errorEl.className = 'text-red-500 text-sm mb-4';
+                    if(!bookingForm.querySelector('.text-red-500')) {
+                       bookingForm.insertBefore(errorEl, bookingForm.firstChild);
+                       setTimeout(() => errorEl.remove(), 3000);
+                    }
+                    return;
+                }
+
+                // Populate and show confirmation modal
+                document.getElementById('conf-name').textContent = name;
+                document.getElementById('conf-email').textContent = email;
+                document.getElementById('conf-room').textContent = room;
+                document.getElementById('conf-checkin').textContent = dates[0];
+                document.getElementById('conf-checkout').textContent = dates[1];
+                document.getElementById('conf-price').textContent = totalPriceEl.textContent;
+
+                const modal = document.getElementById('confirmation-modal');
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.remove('scale-95');
+            });
+            
+            const closeConfModal = () => {
+                const modal = document.getElementById('confirmation-modal');
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.querySelector('.modal-content').classList.add('scale-95');
+                bookingForm.reset();
+                datePicker.clear();
+                updatePrice();
+            };
+
+            document.getElementById('confirmation-close').addEventListener('click', closeConfModal);
+
+            updatePrice(); // Initial call
+        }
+
+    });
+    </script>
+</body>
+</html>
